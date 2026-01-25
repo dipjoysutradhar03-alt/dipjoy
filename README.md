@@ -130,9 +130,39 @@
       <div class="buttons">
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
+        <button onclick="openSecret()">Secret 💗</button>
       </div>
     </div>
     <footer>Made with love by Dipjoy</footer>
+  </section>
+
+  <!-- SECRET OVERLAY -->
+  <div id="secretOverlay" style="display:none;position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);">
+    <div style="max-width:420px;margin:12vh auto;background:var(--glass);border-radius:24px;padding:26px 22px;box-shadow:0 30px 60px rgba(0,0,0,.35);text-align:center;color:#fff">
+      <h2 style="font-family:'Playfair Display',serif;margin-top:0">Unlock my secret 💞</h2>
+      <p style="opacity:.9">Only my wiffeyyy knows the word.</p>
+      <input id="secretInput" placeholder="Enter the secret word" style="width:100%;padding:12px 14px;border-radius:14px;border:0;margin:10px 0 14px" />
+      <div class="buttons" style="justify-content:center">
+        <button onclick="checkSecret()">Unlock ✨</button>
+        <button onclick="closeSecret()">Close</button>
+      </div>
+      <p id="secretError" style="display:none;color:#ffd6df;margin-top:10px">Hmm… try again 💭</p>
+    </div>
+  </div>
+
+  <!-- SECRET PAGE -->
+  <section class="page" id="secret">
+    <h1>Just Between Us 💗</h1>
+    <div class="card">
+      <p style="font-family:'Playfair Display',serif;font-size:1.15rem">
+        If you’re reading this, it means you unlocked a piece of my heart.
+        I don’t say this lightly — you are my safe place, my calm, my favorite thought.
+        I want a thousand small moments with you, and a lifetime of choosing you.
+        <br><br>
+        Forever yours,<br>Dipjoy 💖
+      </p>
+      <div class="buttons"><button onclick="go('home')">Back Home 🏡</button></div>
+    </div>
   </section>
 
   <!-- LETTER -->
@@ -168,6 +198,16 @@
 
     // music toggle
     function toggleMusic(){const a=document.getElementById('bgm');a.paused?a.play():a.pause()}
+
+    // secret unlock
+    const SECRET_WORD = 'wiffeyyy'; // change if you want
+    function openSecret(){document.getElementById('secretOverlay').style.display='block'}
+    function closeSecret(){document.getElementById('secretOverlay').style.display='none';document.getElementById('secretError').style.display='none'}
+    function checkSecret(){
+      const v=document.getElementById('secretInput').value.trim().toLowerCase();
+      if(v===SECRET_WORD){closeSecret();go('secret')}
+      else document.getElementById('secretError').style.display='block'
+    }
   </script>
 </body>
 </html>
