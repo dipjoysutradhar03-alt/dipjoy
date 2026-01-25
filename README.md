@@ -141,7 +141,8 @@
     <div style="max-width:420px;margin:12vh auto;background:var(--glass);border-radius:24px;padding:26px 22px;box-shadow:0 30px 60px rgba(0,0,0,.35);text-align:center;color:#fff">
       <h2 style="font-family:'Playfair Display',serif;margin-top:0">Unlock my secret 💞</h2>
       <p style="opacity:.9">Only my wiffeyyy knows the word.</p>
-      <input id="secretInput" placeholder="Enter the secret word<br><span class="hint">Hint: enter the emoji that we used to confess our love in crowd.</span>" style="width:100%;padding:12px 14px;border-radius:14px;border:0;margin:10px 0 14px" />
+      <input id="secretInput" placeholder="Enter the secret emoji" style="width:100%;padding:12px 14px;border-radius:14px;border:0;margin:10px 0" />
+      <p class="hint" style="font-size:.85rem;opacity:.85;margin-bottom:14px">Hint: enter the emoji that we used to confess our love in crowd.</p>
       <div class="buttons" style="justify-content:center">
         <button onclick="checkSecret()">Unlock ✨</button>
         <button onclick="closeSecret()">Close</button>
@@ -204,7 +205,7 @@
     function openSecret(){document.getElementById('secretOverlay').style.display='block'}
     function closeSecret(){document.getElementById('secretOverlay').style.display='none';document.getElementById('secretError').style.display='none'}
     function checkSecret(){
-      const v=document.getElementById('secretInput').value.trim().toLowerCase();
+      const v=document.getElementById('secretInput').value.trim();
       if(v===SECRET_WORD){closeSecret();go('secret')}
       else document.getElementById('secretError').style.display='block'
     }
