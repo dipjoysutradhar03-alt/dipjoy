@@ -188,7 +188,7 @@
 
   <!-- Music (optional: add music.mp3 next to index.html) -->
   <div class="music"><button onclick="toggleMusic()">🎵 Music</button></div>
-  <audio id="bgm" loop src="music.mp3"></audio>
+  <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
     const pages=document.querySelectorAll('.page');
@@ -197,11 +197,19 @@
     // hearts
     setInterval(()=>{const h=document.createElement('div');h.className='heart';h.textContent='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=4+Math.random()*4+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),8000)},380)
 
-    // music toggle
-    function toggleMusic(){const a=document.getElementById('bgm');a.paused?a.play():a.pause()}
+    // music autoplay fix (browser-safe)
+    const bgm = document.getElementById('bgm');
+    document.addEventListener('click', () => {
+      if (bgm.muted) {
+        bgm.muted = false;
+        bgm.play();
+      }
+    }, { once: true });
+
+    function toggleMusic(){bgm.paused?bgm.play():bgm.pause()}
 
     // secret unlock
-    const SECRET_WORD = '🤟'; // change if you want
+    const SECRET_WORD = '🤟';
     function openSecret(){document.getElementById('secretOverlay').style.display='block'}
     function closeSecret(){document.getElementById('secretOverlay').style.display='none';document.getElementById('secretError').style.display='none'}
     function checkSecret(){
