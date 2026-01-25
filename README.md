@@ -141,7 +141,7 @@
     <div style="max-width:420px;margin:12vh auto;background:var(--glass);border-radius:24px;padding:26px 22px;box-shadow:0 30px 60px rgba(0,0,0,.35);text-align:center;color:#fff">
       <h2 style="font-family:'Playfair Display',serif;margin-top:0">Unlock my secret 💞</h2>
       <p style="opacity:.9">Only my wiffeyyy knows the word.</p>
-      <input id="secretInput" placeholder="Enter the secret word" style="width:100%;padding:12px 14px;border-radius:14px;border:0;margin:10px 0 14px" />
+      <input id="secretInput" placeholder="Enter the secret word<br><span class="hint">Hint: enter the emoji that we used to confess our love in crowd.</span>" style="width:100%;padding:12px 14px;border-radius:14px;border:0;margin:10px 0 14px" />
       <div class="buttons" style="justify-content:center">
         <button onclick="checkSecret()">Unlock ✨</button>
         <button onclick="closeSecret()">Close</button>
@@ -159,7 +159,7 @@
         I don’t say this lightly — you are my safe place, my calm, my favorite thought.
         I want a thousand small moments with you, and a lifetime of choosing you.
         <br><br>
-        Forever yours,<br>Dipjoy 💖
+        The kisses of this Valentine's Day is remaining the pending ones, you have to give me the kisses with interest💋<br><br>Forever yours,<br>Dipjoy 💖
       </p>
       <div class="buttons"><button onclick="go('home')">Back Home 🏡</button></div>
     </div>
@@ -200,7 +200,7 @@
     function toggleMusic(){const a=document.getElementById('bgm');a.paused?a.play():a.pause()}
 
     // secret unlock
-    const SECRET_WORD = 'wiffeyyy'; // change if you want
+    const SECRET_WORD = '🤟'; // change if you want
     function openSecret(){document.getElementById('secretOverlay').style.display='block'}
     function closeSecret(){document.getElementById('secretOverlay').style.display='none';document.getElementById('secretError').style.display='none'}
     function checkSecret(){
