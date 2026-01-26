@@ -80,8 +80,11 @@
       padding:10px 10px 16px;border-radius:6px;
       box-shadow:0 14px 28px rgba(0,0,0,.28);
       transform:rotate(var(--r));
-      animation:float 6s ease-in-out infinite
+      animation:float 6s ease-in-out infinite;
+      touch-action:none; /* allow finger drag */
+      cursor:grab;
     }
+    .mini-photo:active{cursor:grabbing}
     .mini-photo img{width:100%;height:120px;object-fit:cover;border-radius:4px}
     .mini-photo span{display:block;margin-top:6px;font-family:'Patrick Hand',cursive;color:#444}
     @keyframes float{50%{transform:translateY(-8px) rotate(var(--r))}}
@@ -119,10 +122,10 @@
     <h2>My wiffeyyy, my favorite person</h2>
 
     <div class="home-scrapbook">
-      <div class="mini-photo p1"><img src="photo1.jpg"><span>Your eyes have a magic I fall for every time.</span></div>
-      <div class="mini-photo p2"><img src="photo2.jpg"><span>With you beside me, everything feels right.</span></div>
-      <div class="mini-photo p3"><img src="photo3.jpg"><span>This smile is my favorite sight.</span></div>
-      <div class="mini-photo p4"><img src="photo4.jpg"><span>Moments with you are my safest place.</span></div>
+      <div class="mini-photo draggable p1"><img src="photo1.jpg"><span>Your eyes have a magic I fall for every time.</span></div>
+      <div class="mini-photo draggable p2"><img src="photo2.jpg"><span>With you beside me, everything feels right.</span></div>
+      <div class="mini-photo draggable p3"><img src="photo3.jpg"><span>This smile is my favorite sight.</span></div>
+      <div class="mini-photo draggable p4"><img src="photo4.jpg"><span>Moments with you are my safest place.</span></div>
     </div>
 
     <div class="card">
@@ -200,12 +203,8 @@
     // music autoplay fix (browser-safe)
     const bgm = document.getElementById('bgm');
     document.addEventListener('click', () => {
-      if (bgm.muted) {
-        bgm.muted = false;
-        bgm.play();
-      }
+      if (bgm.muted) { bgm.muted = false; bgm.play(); }
     }, { once: true });
-
     function toggleMusic(){bgm.paused?bgm.play():bgm.pause()}
 
     // secret unlock
@@ -217,6 +216,42 @@
       if(v===SECRET_WORD){closeSecret();go('secret')}
       else document.getElementById('secretError').style.display='block'
     }
+
+    // draggable photos (touch + mouse)
+    const draggables = document.querySelectorAll('.draggable');
+    draggables.forEach(el => {
+      let offsetX = 0, offsetY = 0, dragging = false;
+
+      const onDown = (e) => {
+        dragging = true;
+        el.style.animation = 'none'; // stop float while dragging
+        const rect = el.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        offsetX = clientX - rect.left;
+        offsetY = clientY - rect.top;
+        el.setPointerCapture?.(e.pointerId);
+      };
+
+      const onMove = (e) => {
+        if (!dragging) return;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        el.style.left = (clientX - offsetX) + 'px';
+        el.style.top  = (clientY - offsetY) + 'px';
+      };
+
+      const onUp = () => { dragging = false; };
+
+      el.addEventListener('pointerdown', onDown);
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
+
+      // fallback for older mobile
+      el.addEventListener('touchstart', onDown, {passive:false});
+      window.addEventListener('touchmove', onMove, {passive:false});
+      window.addEventListener('touchend', onUp);
+    });
   </script>
 </body>
 </html>
