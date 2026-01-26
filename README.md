@@ -217,40 +217,34 @@
       else document.getElementById('secretError').style.display='block'
     }
 
-    // draggable photos (touch + mouse)
+    // draggable photos (simple & reliable)
     const draggables = document.querySelectorAll('.draggable');
+
     draggables.forEach(el => {
-      let offsetX = 0, offsetY = 0, dragging = false;
+      let isDragging = false;
+      let startX = 0, startY = 0;
 
-      const onDown = (e) => {
-        dragging = true;
-        el.style.animation = 'none'; // stop float while dragging
-        const rect = el.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        offsetX = clientX - rect.left;
-        offsetY = clientY - rect.top;
-        el.setPointerCapture?.(e.pointerId);
-      };
+      el.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        el.style.animation = 'none';
+        el.setPointerCapture(e.pointerId);
+        startX = e.clientX - el.offsetLeft;
+        startY = e.clientY - el.offsetTop;
+      });
 
-      const onMove = (e) => {
-        if (!dragging) return;
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        el.style.left = (clientX - offsetX) + 'px';
-        el.style.top  = (clientY - offsetY) + 'px';
-      };
+      el.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        el.style.left = (e.clientX - startX) + 'px';
+        el.style.top  = (e.clientY - startY) + 'px';
+      });
 
-      const onUp = () => { dragging = false; };
+      el.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
 
-      el.addEventListener('pointerdown', onDown);
-      window.addEventListener('pointermove', onMove);
-      window.addEventListener('pointerup', onUp);
-
-      // fallback for older mobile
-      el.addEventListener('touchstart', onDown, {passive:false});
-      window.addEventListener('touchmove', onMove, {passive:false});
-      window.addEventListener('touchend', onUp);
+      el.addEventListener('pointercancel', () => {
+        isDragging = false;
+      });
     });
   </script>
 </body>
