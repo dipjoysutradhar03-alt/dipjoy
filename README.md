@@ -190,7 +190,7 @@
   </section>
 
   <!-- Music (optional: add music.mp3 next to index.html) -->
-  <div class="music"><button onclick="toggleMusic()">tap💗</button></div>
+  <div class="music"><button onclick="toggleMusic()">pause music💗</button></div>
   <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
