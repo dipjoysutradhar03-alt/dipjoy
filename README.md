@@ -76,14 +76,18 @@
     /* HOME scrapbook */
     .home-scrapbook{position:absolute;inset:70px 0 0 0;pointer-events:none}
     .mini-photo{
-      position:absolute;width:140px;background:#fff;
-      padding:10px 10px 16px;border-radius:6px;
+      position:absolute;
+      width:140px;
+      background:#fff;
+      padding:10px 10px 16px;
+      border-radius:6px;
       box-shadow:0 14px 28px rgba(0,0,0,.28);
       transform:rotate(var(--r));
       animation:float 6s ease-in-out infinite;
-      touch-action:none; /* allow finger drag */
+      touch-action:none;
       cursor:grab;
     }
+    .mini-photo:active{cursor:grabbing}
     .mini-photo:active{cursor:grabbing}
     .mini-photo img{width:100%;height:120px;object-fit:cover;border-radius:4px}
     .mini-photo span{display:block;margin-top:6px;font-family:'Patrick Hand',cursive;color:#444}
@@ -194,57 +198,80 @@
   <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
-    const pages=document.querySelectorAll('.page');
-    function go(id){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active')}
+    const pages = document.querySelectorAll('.page');
+    function go(id){
+      pages.forEach(p=>p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
-    // hearts
-    setInterval(()=>{const h=document.createElement('div');h.className='heart';h.textContent='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=4+Math.random()*4+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),8000)},380)
+    // floating hearts
+    setInterval(()=>{
+      const h=document.createElement('div');
+      h.className='heart';
+      h.textContent='❤️';
+      h.style.left=Math.random()*100+'vw';
+      h.style.animationDuration=4+Math.random()*4+'s';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),8000);
+    },380);
 
-    // music autoplay fix (browser-safe)
+    // music autoplay
     const bgm = document.getElementById('bgm');
-    document.addEventListener('click', () => {
-      if (bgm.muted) { bgm.muted = false; bgm.play(); }
-    }, { once: true });
-    function toggleMusic(){bgm.paused?bgm.play():bgm.pause()}
+    document.addEventListener('click', ()=>{
+      if(bgm.muted){ bgm.muted=false; bgm.play(); }
+    }, { once:true });
+    function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
 
     // secret unlock
     const SECRET_WORD = '🤟';
-    function openSecret(){document.getElementById('secretOverlay').style.display='block'}
-    function closeSecret(){document.getElementById('secretOverlay').style.display='none';document.getElementById('secretError').style.display='none'}
+    function openSecret(){ document.getElementById('secretOverlay').style.display='block'; }
+    function closeSecret(){
+      document.getElementById('secretOverlay').style.display='none';
+      document.getElementById('secretError').style.display='none';
+    }
     function checkSecret(){
       const v=document.getElementById('secretInput').value.trim();
-      if(v===SECRET_WORD){closeSecret();go('secret')}
-      else document.getElementById('secretError').style.display='block'
+      if(v===SECRET_WORD){ closeSecret(); go('secret'); }
+      else document.getElementById('secretError').style.display='block';
     }
 
-    // draggable photos (simple & reliable)
-    const draggables = document.querySelectorAll('.draggable');
+    // DRAG PHOTOS (WORKING: mouse + touch)
+    document.querySelectorAll('.draggable').forEach(photo=>{
+      let startX=0, startY=0, dragging=false;
 
-    draggables.forEach(el => {
-      let isDragging = false;
-      let startX = 0, startY = 0;
+      photo.addEventListener('mousedown', startDrag);
+      photo.addEventListener('touchstart', startDrag, {passive:false});
 
-      el.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        el.style.animation = 'none';
-        el.setPointerCapture(e.pointerId);
-        startX = e.clientX - el.offsetLeft;
-        startY = e.clientY - el.offsetTop;
-      });
+      function startDrag(e){
+        dragging=true;
+        photo.style.animation='none';
+        const rect = photo.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        startX = clientX - rect.left;
+        startY = clientY - rect.top;
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag, {passive:false});
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+      }
 
-      el.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        el.style.left = (e.clientX - startX) + 'px';
-        el.style.top  = (e.clientY - startY) + 'px';
-      });
+      function drag(e){
+        if(!dragging) return;
+        e.preventDefault();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        photo.style.left = (clientX - startX) + 'px';
+        photo.style.top  = (clientY - startY) + 'px';
+      }
 
-      el.addEventListener('pointerup', () => {
-        isDragging = false;
-      });
-
-      el.addEventListener('pointercancel', () => {
-        isDragging = false;
-      });
+      function endDrag(){
+        dragging=false;
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('touchmove', drag);
+        document.removeEventListener('mouseup', endDrag);
+        document.removeEventListener('touchend', endDrag);
+      }
     });
   </script>
 </body>
