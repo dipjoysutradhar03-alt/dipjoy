@@ -136,7 +136,8 @@
 
   <!-- HOME -->
   <section class="page active" id="home">
-    <h1>Amrika ❤️</h1>
+    <h1 id="whisper">Amrika ❤️</h1>
+    <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
 
     <div class="home-scrapbook">
@@ -152,9 +153,10 @@
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
         <button onclick="openSecret()">Secret 💗</button>
+        <button onclick="addKiss()">💋 Kiss</button>
       </div>
     </div>
-    <footer>Made with love by Dipjoy</footer>
+    <footer>Kisses you owe me: <span id="kissCount">0</span> 💋<br>Made with love by Dipjoy</footer>
   </section>
 
   <!-- SECRET OVERLAY -->
@@ -213,79 +215,42 @@
 
   <script>
     const pages = document.querySelectorAll('.page');
-    function go(id){
-      pages.forEach(p=>p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+    function go(id){ pages.forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+
+    // whisper effect
+    window.addEventListener('load', ()=>{
+      const w=document.getElementById('whisperText');
+      setTimeout(()=>{ w.style.transition='opacity 2s'; w.style.opacity=1; },1200);
+    });
 
     // floating hearts
-    setInterval(()=>{
-      const h=document.createElement('div');
-      h.className='heart';
-      h.textContent='❤️';
-      h.style.left=Math.random()*100+'vw';
-      h.style.animationDuration=4+Math.random()*4+'s';
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),8000);
-    },380);
+    setInterval(()=>{const h=document.createElement('div');h.className='heart';h.textContent='❤️';h.style.left=Math.random()*100+'vw';h.style.animationDuration=4+Math.random()*4+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),8000)},380);
 
     // music autoplay
-    const bgm = document.getElementById('bgm');
-    document.addEventListener('click', ()=>{
-      if(bgm.muted){ bgm.muted=false; bgm.play(); }
-    }, { once:true });
-    function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
+    const bgm=document.getElementById('bgm');
+    document.addEventListener('click',()=>{ if(bgm.muted){ bgm.muted=false; bgm.play(); }},{once:true});
+    function toggleMusic(){ bgm.paused?bgm.play():bgm.pause(); }
+
+    // kiss counter
+    let kisses = Number(localStorage.getItem('kisses')||0);
+    const kissSpan=document.getElementById('kissCount');
+    kissSpan.textContent=kisses;
+    function addKiss(){ kisses++; kissSpan.textContent=kisses; localStorage.setItem('kisses',kisses); }
 
     // secret unlock
-    const SECRET_WORD = '🤟';
+    const SECRET_WORD='🤟';
     function openSecret(){ document.getElementById('secretOverlay').style.display='block'; }
-    function closeSecret(){
-      document.getElementById('secretOverlay').style.display='none';
-      document.getElementById('secretError').style.display='none';
-    }
-    function checkSecret(){
-      const v=document.getElementById('secretInput').value.trim();
-      if(v===SECRET_WORD){ closeSecret(); go('secret'); }
-      else document.getElementById('secretError').style.display='block';
-    }
+    function closeSecret(){ document.getElementById('secretOverlay').style.display='none'; document.getElementById('secretError').style.display='none'; }
+    function checkSecret(){ const v=document.getElementById('secretInput').value.trim(); if(v===SECRET_WORD){ closeSecret(); go('secret'); } else document.getElementById('secretError').style.display='block'; }
 
-    // DRAG PHOTOS (WORKING: mouse + touch)
+    // draggable photos
     document.querySelectorAll('.draggable').forEach(photo=>{
-      let startX=0, startY=0, dragging=false;
-
-      photo.addEventListener('mousedown', startDrag);
-      photo.addEventListener('touchstart', startDrag, {passive:false});
-
-      function startDrag(e){
-        dragging=true;
-        photo.style.animation='none';
-        const rect = photo.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        startX = clientX - rect.left;
-        startY = clientY - rect.top;
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('touchmove', drag, {passive:false});
-        document.addEventListener('mouseup', endDrag);
-        document.addEventListener('touchend', endDrag);
-      }
-
-      function drag(e){
-        if(!dragging) return;
-        e.preventDefault();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        photo.style.left = (clientX - startX) + 'px';
-        photo.style.top  = (clientY - startY) + 'px';
-      }
-
-      function endDrag(){
-        dragging=false;
-        document.removeEventListener('mousemove', drag);
-        document.removeEventListener('touchmove', drag);
-        document.removeEventListener('mouseup', endDrag);
-        document.removeEventListener('touchend', endDrag);
-      }
+      let startX=0,startY=0,dragging=false;
+      photo.addEventListener('mousedown',startDrag);
+      photo.addEventListener('touchstart',startDrag,{passive:false});
+      function startDrag(e){ dragging=true; photo.style.animation='none'; const r=photo.getBoundingClientRect(); const x=e.touches?e.touches[0].clientX:e.clientX; const y=e.touches?e.touches[0].clientY:e.clientY; startX=x-r.left; startY=y-r.top; document.addEventListener('mousemove',drag); document.addEventListener('touchmove',drag,{passive:false}); document.addEventListener('mouseup',endDrag); document.addEventListener('touchend',endDrag); }
+      function drag(e){ if(!dragging) return; e.preventDefault(); const x=e.touches?e.touches[0].clientX:e.clientX; const y=e.touches?e.touches[0].clientY:e.clientY; photo.style.left=(x-startX)+'px'; photo.style.top=(y-startY)+'px'; }
+      function endDrag(){ dragging=false; document.removeEventListener('mousemove',drag); document.removeEventListener('touchmove',drag); document.removeEventListener('mouseup',endDrag); document.removeEventListener('touchend',endDrag); }
     });
   </script>
 </body>
