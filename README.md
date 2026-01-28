@@ -128,7 +128,9 @@
     }
       .mini-photo{width:120px}
     }
-  </style>
+  .heartbeat{animation:heartbeat 1.5s infinite;cursor:pointer}@keyframes heartbeat{0%{transform:scale(1)}25%{transform:scale(1.08)}40%{transform:scale(1)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.heartbeat.fast{animation:heartbeat .6s infinite}
+</style>
 </head>
 <body>
 
@@ -136,7 +138,7 @@
 
   <!-- HOME -->
   <section class="page active" id="home">
-    <h1 id="whisper">Amrika ❤️</h1>
+    <h1 id="whisper" class="heartbeat">Amrika ❤️</h1>
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
 
@@ -218,6 +220,11 @@
     function go(id){ pages.forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
     // whisper effect
+    const heart=document.getElementById('whisper');
+    heart.addEventListener('click',()=>{
+      heart.classList.add('fast');
+      setTimeout(()=>heart.classList.remove('fast'),2500);
+    });
     window.addEventListener('load', ()=>{
       const w=document.getElementById('whisperText');
       setTimeout(()=>{ w.style.transition='opacity 2s'; w.style.opacity=1; },1200);
