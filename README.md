@@ -90,7 +90,17 @@
     .mini-photo:active{cursor:grabbing}
     .mini-photo:active{cursor:grabbing}
     .mini-photo img{width:100%;height:120px;object-fit:cover;border-radius:4px}
-    .mini-photo span{display:block;margin-top:6px;font-family:'Patrick Hand',cursive;color:#444}
+    .mini-photo span{
+      display:block;
+      margin-top:8px;
+      font-family:'Patrick Hand',cursive;
+      color:#222;
+      font-size:0.95rem;
+      line-height:1.3;
+      background:rgba(255,255,255,0.9);
+      padding:4px 6px;
+      border-radius:4px;
+    }
     @keyframes float{50%{transform:translateY(-8px) rotate(var(--r))}}
     .p1{top:18%;left:6%;--r:-6deg}
     .p2{top:24%;right:8%;--r:5deg}
@@ -112,6 +122,10 @@
     /* mobile tweaks */
     @media(max-width:600px){
       h1{font-size:2.4rem}
+      .mini-photo{width:130px}
+      .mini-photo img{height:110px}
+      .mini-photo span{font-size:0.85rem}
+    }
       .mini-photo{width:120px}
     }
   </style>
