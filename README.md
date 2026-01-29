@@ -153,7 +153,7 @@
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
     <div class="valentine-line">Love You my cutiiieee bubu💗</div>
-    <div style="margin-top:10px;font-family:'Patrick Hand',cursive;font-size:2rem;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.35)">Love You my cutiiieee bubu💗</div>
+    
 
     <div class="home-scrapbook">
       <div class="mini-photo draggable p1"><img src="photo1.jpg"><span>Your eyes have a magic I fall for every time.</span></div>
