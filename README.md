@@ -155,10 +155,10 @@
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
         <button onclick="openSecret()">Secret 💗</button>
-        <button onclick="addKiss()">💋 Kiss</button>
+        
       </div>
     </div>
-    <footer>Kisses you owe me: <span id="kissCount">0</span> 💋<br>Made with love by Dipjoy</footer>
+    <footer>Made with love by Dipjoy 💖</footer>
   </section>
 
   <!-- SECRET OVERLAY -->
@@ -238,11 +238,7 @@
     document.addEventListener('click',()=>{ if(bgm.muted){ bgm.muted=false; bgm.play(); }},{once:true});
     function toggleMusic(){ bgm.paused?bgm.play():bgm.pause(); }
 
-    // kiss counter
-    let kisses = Number(localStorage.getItem('kisses')||0);
-    const kissSpan=document.getElementById('kissCount');
-    kissSpan.textContent=kisses;
-    function addKiss(){ kisses++; kissSpan.textContent=kisses; localStorage.setItem('kisses',kisses); }
+    
 
     // secret unlock
     const SECRET_WORD='🤟';
