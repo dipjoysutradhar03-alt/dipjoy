@@ -141,6 +141,45 @@
 }
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
+
+/* MOBILE LAYOUT FIXES */
+.mobile-hero{
+  position:relative;
+  z-index:5;
+  text-align:center;
+  padding:12px 8px 20px;
+}
+
+@media(max-width:600px){
+  .page{padding-top:80px}
+
+  .home-scrapbook{
+    position:relative;
+    inset:auto;
+    width:100%;
+    height:360px;
+    margin-top:10px;
+    pointer-events:auto;
+  }
+
+  .mini-photo{
+    width:120px;
+  }
+
+  .p1{top:10%;left:5%}
+  .p2{top:12%;right:5%}
+  .p3{top:55%;left:8%}
+  .p4{top:55%;right:8%}
+
+  h1{font-size:2.2rem}
+  h2{font-size:1.1rem}
+
+  .valentine-line{
+    font-size:1.6rem;
+    margin-bottom:8px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -149,11 +188,14 @@
 
   <!-- HOME -->
   <section class="page active" id="home">
+    <div class="mobile-hero">
     <h1 id="whisper" class="heartbeat">Amrika ❤️</h1>
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
     <div class="valentine-line">Love You my cutiiieee bubu💗</div>
-    
+    <div style="margin-top:10px;font-family:'Patrick Hand',cursive;font-size:2rem;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.35)">Love You my cutiiieee bubu💗</div>
+
+        </div>
 
     <div class="home-scrapbook">
       <div class="mini-photo draggable p1"><img src="photo1.jpg"><span>Your eyes have a magic I fall for every time.</span></div>
