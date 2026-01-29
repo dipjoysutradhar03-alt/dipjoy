@@ -130,6 +130,17 @@
     }
   .heartbeat{animation:heartbeat 1.5s infinite;cursor:pointer}@keyframes heartbeat{0%{transform:scale(1)}25%{transform:scale(1.08)}40%{transform:scale(1)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
 .heartbeat.fast{animation:heartbeat .6s infinite}
+
+.valentine-line{
+  font-family:'Patrick Hand',cursive;
+  font-size:2.2rem;
+  color:#fff;
+  text-shadow:0 4px 14px rgba(255,0,100,.8);
+  animation:pulse 1.6s infinite;
+  margin-top:6px;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
 </style>
 </head>
 <body>
@@ -141,6 +152,7 @@
     <h1 id="whisper" class="heartbeat">Amrika ❤️</h1>
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
+    <div class="valentine-line">Love You my cutiiieee bubu💗</div>
     <div style="margin-top:10px;font-family:'Patrick Hand',cursive;font-size:2rem;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.35)">Love You my cutiiieee bubu💗</div>
 
     <div class="home-scrapbook">
