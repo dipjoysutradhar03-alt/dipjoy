@@ -79,13 +79,16 @@
       position:absolute;
       width:140px;
       background:#fff;
-      padding:10px 10px 16px;
-      border-radius:6px;
-      box-shadow:0 14px 28px rgba(0,0,0,.28);
+      padding:12px 12px 18px;
+      border-radius:10px;
+      box-shadow:0 18px 36px rgba(0,0,0,.35);
       transform:rotate(var(--r));
       animation:float 6s ease-in-out infinite;
       touch-action:none;
       cursor:grab;
+      border:3px solid #ffe6ee;
+      background-image:repeating-linear-gradient(45deg, rgba(255,90,122,.08) 0 10px, transparent 10px 20px);
+
     }
     .mini-photo:active{cursor:grabbing}
     .mini-photo:active{cursor:grabbing}
@@ -153,7 +156,7 @@
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
     <div class="valentine-line">Love You my cutiiieee bubu💗</div>
-    
+    <div style="margin-top:10px;font-family:'Patrick Hand',cursive;font-size:2rem;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.35)">Love You my cutiiieee bubu💗</div>
 
     <div class="home-scrapbook">
       <div class="mini-photo draggable p1"><img src="photo1.jpg"><span>Your eyes have a magic I fall for every time.</span></div>
@@ -259,11 +262,40 @@
     function closeSecret(){ document.getElementById('secretOverlay').style.display='none'; document.getElementById('secretError').style.display='none'; }
     function checkSecret(){ const v=document.getElementById('secretInput').value.trim(); if(v===SECRET_WORD){ closeSecret(); go('secret'); } else document.getElementById('secretError').style.display='block'; }
 
-    // draggable photos
+    // draggable photos (works with finger + mouse)
     document.querySelectorAll('.draggable').forEach(photo=>{
-      let startX=0,startY=0,dragging=false;
-      photo.addEventListener('mousedown',startDrag);
-      photo.addEventListener('touchstart',startDrag,{passive:false});
+      let offsetX=0, offsetY=0, isDragging=false;
+
+      const start = e => {
+        isDragging = true;
+        photo.style.animation = 'none';
+        photo.style.zIndex = 50;
+        const p = e.touches ? e.touches[0] : e;
+        const r = photo.getBoundingClientRect();
+        offsetX = p.clientX - r.left;
+        offsetY = p.clientY - r.top;
+      };
+
+      const move = e => {
+        if(!isDragging) return;
+        e.preventDefault();
+        const p = e.touches ? e.touches[0] : e;
+        photo.style.left = (p.clientX - offsetX) + 'px';
+        photo.style.top  = (p.clientY - offsetY) + 'px';
+      };
+
+      const end = () => {
+        isDragging = false;
+        photo.style.zIndex = 5;
+      };
+
+      photo.addEventListener('mousedown', start);
+      photo.addEventListener('touchstart', start, {passive:false});
+      window.addEventListener('mousemove', move);
+      window.addEventListener('touchmove', move, {passive:false});
+      window.addEventListener('mouseup', end);
+      window.addEventListener('touchend', end);
+    });
       function startDrag(e){ dragging=true; photo.style.animation='none'; const r=photo.getBoundingClientRect(); const x=e.touches?e.touches[0].clientX:e.clientX; const y=e.touches?e.touches[0].clientY:e.clientY; startX=x-r.left; startY=y-r.top; document.addEventListener('mousemove',drag); document.addEventListener('touchmove',drag,{passive:false}); document.addEventListener('mouseup',endDrag); document.addEventListener('touchend',endDrag); }
       function drag(e){ if(!dragging) return; e.preventDefault(); const x=e.touches?e.touches[0].clientX:e.clientX; const y=e.touches?e.touches[0].clientY:e.clientY; photo.style.left=(x-startX)+'px'; photo.style.top=(y-startY)+'px'; }
       function endDrag(){ dragging=false; document.removeEventListener('mousemove',drag); document.removeEventListener('touchmove',drag); document.removeEventListener('mouseup',endDrag); document.removeEventListener('touchend',endDrag); }
