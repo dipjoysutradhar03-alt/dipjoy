@@ -272,7 +272,7 @@
   <h1>A little useless words😶‍🌫️</h1>
   <div class="card">
     <p>And umm, I want to tell something you...👉👈Don't be angry haa!! please sweetheart, ashole oi Drishti er bapare aslo rki...I swear j ami taire boin maani, but i don't know why my feelings of class 8 or 9 aren't going off. taire koiyo na kichhu, taire mono tumi koiya disla j amr mone kichhu... so ida please koiyo naa🙏🙏 I want some solution to get me out of this thing, without breaking bond of brother-sister between us. <br> PLEASE GIVE ME SOLUTION...I just wanted to share my whole thing with you, and I did it. Please don't take me wrong...<br> <h1>LOVE YOU SWEETUUU❤️😘💋💋💋💋💋💗💗💗</h1></p>
-    <div class="buttons"><button onclick="go('home')">Back Home🏡, and sorry for this disturbation</button></div>
+    <div class="buttons"><button onclick="go('home')">Back Home🏡</button></div>
   </div>
 </selection>
 
