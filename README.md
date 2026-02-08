@@ -210,6 +210,7 @@
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
         <button onclick="openSecret()">Secret 💗</button>
+        <button onclick="go('useless')">A little useless words😶‍🌫️</button>
         
       </div>
     </div>
@@ -265,6 +266,7 @@
       <div class="buttons"><button onclick="go('home')">Back Home 🏡</button></div>
     </div>
   </section>
+  
 <!-- useless -->
 <selection class="page" id="useless">
   <h1>A little useless words😶‍🌫️</h1>
