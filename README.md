@@ -310,7 +310,7 @@
     </div>
   </section>
 
-  <!-- useless -->
+  <!-- USELESS -->
   <section class="page" id="useless">
   <h1>Some Useless thoughts😶‍🌫️</h1>
   <div class="card">
