@@ -311,7 +311,7 @@
   </section>
 
   <!-- useless -->
-  <section class="page" id="why">
+  <section class="page" id="useless">
   <h1>Some Useless thoughts😶‍🌫️</h1>
   <div class="card">
   <p>And umm, I want to tell something you...👉👈Don't be angry haa!! please sweetheart, ashole oi Drishti er bapare aslo rki...I swear j ami taire boin maani, but i don't know why my feelings of class 8 or 9 aren't going off. taire koiyo na kichhu, taire mono tumi koiya disla j amr mone kichhu... so ida please koiyo naa🙏🙏 I want some solution to get me out of this thing, without breaking bond of brother-sister between us.
