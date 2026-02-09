@@ -180,10 +180,52 @@
   }
 }
 
+
+/* LOVE LOCK SCREEN */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.lock-box{
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(12px);
+  padding:28px 24px;
+  border-radius:24px;
+  text-align:center;
+  color:#fff;
+  max-width:320px;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.lock-box h2{font-family:'Playfair Display',serif;margin-top:0}
+.lock-box input{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:0;
+  margin:12px 0;
+  text-align:center;
+  font-size:1rem;
+}
 </style>
 </head>
 <body>
 
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>Only for Amrika 💗</h2>
+    <p>Enter our love password to open ✨</p>
+    <p style="font-size:.9rem;opacity:.9">Hint: Use the emoji by which we used to confess our love in crowd, the emoji of hand 💞</p>
+    <input id="lovePass" placeholder="Our secret emoji...">
+    <button onclick="unlockLove()">Unlock 💖</button>
+    <p id="lockError" style="display:none;margin-top:10px">Wrong password 💔</p>
+  </div>
+</div>
 
   <div class="hero"><strong>For Amrika ❤️</strong></div>
 
@@ -194,7 +236,7 @@
     <div id="whisperText" style="opacity:0;font-family:'Patrick Hand',cursive;font-size:1.2rem;margin-top:-10px">Hey Amrika…</div>
     <h2>My wiffeyyy, my favorite person</h2>
     <div class="valentine-line">Love You my cutiiieee bubu💗</div>
-    
+    <div style="margin-top:10px;font-family:'Patrick Hand',cursive;font-size:2rem;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.35)">Love You my cutiiieee bubu💗</div>
 
         </div>
 
@@ -211,7 +253,6 @@
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
         <button onclick="openSecret()">Secret 💗</button>
-        <button onclick="go('useless')">A little useless words😶‍🌫️</button>
         
       </div>
     </div>
@@ -253,7 +294,7 @@
     <h1>A Letter for You 💌</h1>
     <div class="card letter">
       <p>My dearest Amrika,<br><br>
-      You have a way of turning ordinary moments into something gentle and bright. Your smile feels like home, and your presence brings a quiet peace. With you, laughter comes easily — and even silence feels warm. I know I'm a useless fellow but for me you're that song of my life I would want to listen and listen in my whole life, you're the mirror of my house which I would want to see everyday after waking up from sleep, I can't express you what are you for me 'cause it cannot be expressed by words. I wish we could celebrate this valentine's day together, sitting somewhere watching the sky, talking to each other, my head in the comfort zone of your laps, our hands holding each other as we're here for each other only, but... it can't be possible. I don't know when it'll be happened in my life but promise it'll happen 100%. Someday there will be just you and me, no others, justt😭... BTW you know what's the most ridiculous thing between us? it's that we don't know each other ywarr. i wanna know you more & more, but ofc I don't have this fuckin luck. Love you Love You Love YouuUUU my BUBU💗🤟💋 My affection, love, madness or whatever you call it towards you is like e^x, it's no matter how much some try to break it, it will be remained same for all time.  <br><br>
+      You have a way of turning ordinary moments into something gentle and bright. Your smile feels like home, and your presence brings a quiet peace. With you, laughter comes easily — and even silence feels warm. I know I'm a useless fellow but for me you're that song of my life I would want to listen and listen in my whole life, you're the mirror of my house which I would want to see everyday after waking up from sleep, I can't express you what are you for me 'cause it cannot be expressed by words. I wish we could celebrate this valentine's day together, sitting somewhere watching the sky, talking to each other, my head in the comfort zone of your laps, our hands holding each other as we're here for each other only, but... it can't be possible. I don't know when it'll be happened in my life but promise it'll happen 100%. Someday there will be just you and me, no others, justt😭... BTW you know what's the most ridiculous thing between us? it's that we don't know each other ywarr. i wanna know you more & more, but ofc I don't have this fuckin luck. Love you Love You Love YouuUUU my BUBU💗🤟💋 My affection, love, madness or whatever you call it towards you is like e^x, it's no matter how much some try to break it, it will be remained same for all time.<br><br>
       I choose you, again and again, in the little ways and the big ones. Always yours,<br>Dipjoy 💖</p>
       <div class="buttons"><button onclick="go('home')">Back Home 🏡</button></div>
     </div>
@@ -263,26 +304,28 @@
   <section class="page" id="why">
     <h1>Why I Love You 💖</h1>
     <div class="card">
-      <p> Are you thinking that there would be reasons for why I love you?😂 No darlin, even i don't know why i loved you for the first time or loving you this much noww, then how can I tell you any reason of it? But here Re some of it just for formality- Because you’re kind and real. Because your laughter makes everything lighter. Because being with you feels natural and safe. And mostly… because you are you. My wiffeyyy ❤️ And till the last breathe of my life, you will be loved and respected at same time by this Dipjoy Sutradhar😘🤗. So moral of the story there will never be any reason why I love you, and if there are any reason then f**k it off, I Love You without any reason.   </p>
+      <p>Are you thinking that there would be reasons for why I love you?😂 No darlin, even i don't know why i loved you for the first time or loving you this much noww, then how can I tell you any reason of it? But here Re some of it just for formality- Because you’re kind and real. Because your laughter makes everything lighter. Because being with you feels natural and safe. And mostly… because you are you. My wiffeyyy ❤️ And till the last breathe of my life, you will be loved and respected at same time by this Dipjoy Sutradhar😘🤗. So moral of the story there will never be any reason why I love you, and if there are any reason then f**k it off, I Love You without any reason.</p>
       <div class="buttons"><button onclick="go('home')">Back Home 🏡</button></div>
     </div>
   </section>
-  
-<!-- useless -->
-<selection class="page" id="useless">
-  <h1>A little useless words😶‍🌫️</h1>
-  <div class="card">
-    <p>And umm, I want to tell something you...👉👈Don't be angry haa!! please sweetheart, ashole oi Drishti er bapare aslo rki...I swear j ami taire boin maani, but i don't know why my feelings of class 8 or 9 aren't going off. taire koiyo na kichhu, taire mono tumi koiya disla j amr mone kichhu... so ida please koiyo naa🙏🙏 I want some solution to get me out of this thing, without breaking bond of brother-sister between us. <br> PLEASE GIVE ME SOLUTION...I just wanted to share my whole thing with you, and I did it. Please don't take me wrong...<br> <h1>LOVE YOU SWEETUUU❤️😘💋💋💋💋💋💗💗💗</h1></p>
-    <div class="buttons"><button onclick="go('home')">Back Home🏡 and sorry for the disturbance</button></div>
-  </div>
-</selection>
 
   <!-- Music (optional: add music.mp3 next to index.html) -->
   <div class="music"><button onclick="toggleMusic()">pause music💗</button></div>
   <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
-    const pages = document.querySelectorAll('.page');
+    // LOVE LOCK
+const LOVE_PASSWORD="🤟";
+function unlockLove(){
+  const v=document.getElementById('lovePass').value.trim();
+  if(v===LOVE_PASSWORD){
+    document.getElementById('lockScreen').style.display='none';
+  }else{
+    document.getElementById('lockError').style.display='block';
+  }
+}
+
+const pages = document.querySelectorAll('.page');
     function go(id){ pages.forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
     // whisper effect
