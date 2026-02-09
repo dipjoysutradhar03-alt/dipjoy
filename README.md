@@ -281,6 +281,17 @@
   <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
+    <script>
+// LOVE LOCK
+const LOVE_PASSWORD="🤟";
+function unlockLove(){
+const v=document.getElementById('lovePass').value.trim();
+if(v===LOVE_PASSWORD){
+document.getElementById('lockScreen').style.display='none';
+}else{
+document.getElementById('lockError').style.display='block';
+}
+}
     const pages = document.querySelectorAll('.page');
     function go(id){ pages.forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
