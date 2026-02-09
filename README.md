@@ -180,6 +180,36 @@
   }
 }
 
+    /* LOVE LOCK SCREEN */
+#lockScreen{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+.lock-box{
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(12px);
+padding:28px 24px;
+border-radius:24px;
+text-align:center;
+color:#fff;
+max-width:320px;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.lock-box h2{font-family:'Playfair Display',serif;margin-top:0}
+.lock-box input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:0;
+margin:12px 0;
+text-align:center;
+font-size:1rem;
+}
 </style>
 </head>
 <body>
