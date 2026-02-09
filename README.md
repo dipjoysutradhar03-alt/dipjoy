@@ -184,6 +184,16 @@
 </head>
 <body>
 
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+<div class="lock-box">
+<h2>Only for Amrika 💗</h2>
+<p>Enter our love password to open ✨</p>
+<input id="lovePass" placeholder="Our secret emoji...">
+<button onclick="unlockLove()">Unlock 💖</button>
+<p id="lockError" style="display:none;margin-top:10px">Wrong password 💔</p>
+</div>
+</div>
   <div class="hero"><strong>For Amrika ❤️</strong></div>
 
   <!-- HOME -->
