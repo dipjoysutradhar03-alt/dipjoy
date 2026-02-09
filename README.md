@@ -180,50 +180,11 @@
   }
 }
 
-    /* LOVE LOCK SCREEN */
-#lockScreen{
-position:fixed;
-inset:0;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:9999;
-}
-.lock-box{
-background:rgba(255,255,255,.25);
-backdrop-filter:blur(12px);
-padding:28px 24px;
-border-radius:24px;
-text-align:center;
-color:#fff;
-max-width:320px;
-box-shadow:0 20px 40px rgba(0,0,0,.3);
-}
-.lock-box h2{font-family:'Playfair Display',serif;margin-top:0}
-.lock-box input{
-width:100%;
-padding:12px;
-border-radius:12px;
-border:0;
-margin:12px 0;
-text-align:center;
-font-size:1rem;
-}
 </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
-<div id="lockScreen">
-<div class="lock-box">
-<h2>Only for Amrika 💗</h2>
-<p>Enter our love password to open ✨</p>
-<input id="lovePass" placeholder="Our secret emoji...">
-<button onclick="unlockLove()">Unlock 💖</button>
-<p id="lockError" style="display:none;margin-top:10px">Wrong password 💔</p>
-</div>
-</div>
+
   <div class="hero"><strong>For Amrika ❤️</strong></div>
 
   <!-- HOME -->
@@ -321,17 +282,6 @@ font-size:1rem;
   <audio id="bgm" loop autoplay muted playsinline src="music.mp3"></audio>
 
   <script>
-    <script>
-// LOVE LOCK
-const LOVE_PASSWORD="🤟";
-function unlockLove(){
-const v=document.getElementById('lovePass').value.trim();
-if(v===LOVE_PASSWORD){
-document.getElementById('lockScreen').style.display='none';
-}else{
-document.getElementById('lockError').style.display='block';
-}
-}
     const pages = document.querySelectorAll('.page');
     function go(id){ pages.forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
