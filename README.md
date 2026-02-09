@@ -253,6 +253,7 @@
         <button onclick="go('letter')">Read My Letter 💌</button>
         <button onclick="go('why')">Why I Love You 💖</button>
         <button onclick="openSecret()">Secret 💗</button>
+        <button onclick="go('useless')">Some Useless thoughts😶‍🌫️</button>
         
       </div>
     </div>
@@ -315,7 +316,7 @@
   <div class="card">
   <p>And umm, I want to tell something you...👉👈Don't be angry haa!! please sweetheart, ashole oi Drishti er bapare aslo rki...I swear j ami taire boin maani, but i don't know why my feelings of class 8 or 9 aren't going off. taire koiyo na kichhu, taire mono tumi koiya disla j amr mone kichhu... so ida please koiyo naa🙏🙏 I want some solution to get me out of this thing, without breaking bond of brother-sister between us.
 PLEASE GIVE ME SOLUTION...I just wanted to share my whole thing with you, and I did it. Please don't take me wrong...<br><br> LOVE YOU MY SWEETUUU💗💗❤️❤️💋💋💋💋💋💋</p>
-<div class="button"><button onclick="go(home)">Back Home🏡 & sorry for this disturbance😗</button></div>
+<div class="button"><button onclick="go('home')">Back Home🏡 & sorry for this disturbance😗</button></div>
   </div>
   </section>
 
